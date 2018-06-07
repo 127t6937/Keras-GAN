@@ -54,7 +54,7 @@ class GAN():
         model = Sequential()
 
         model.add(Dense(100, input_dim=self.latent_dim))
-        model.add(activation = 'relu')
+        model.add(Activation('relu'))
         model.add(Dense(100))
         model.add(LeakyReLU(alpha=0.2))
 
