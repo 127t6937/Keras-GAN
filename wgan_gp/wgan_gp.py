@@ -242,4 +242,4 @@ class WGANGP():
 
 if __name__ == '__main__':
     wgan = WGANGP()
-    wgan.train(epochs=30000, batch_size=32, sample_interval=100)
+    wgan.train(epochs=3000, batch_size=32, sample_interval=100)
