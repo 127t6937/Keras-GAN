@@ -56,10 +56,10 @@ class GAN():
         model.add(Dense(100, input_dim=self.latent_dim))
         model.add(BatchNormalization(momentum=0.8))
         model.add(Activation('relu'))
-        model.add(Dense(100))
+        model.add(Dense(200))
         model.add(BatchNormalization(momentum=0.8))
         model.add(Activation('relu'))
-        model.add(Dense(100))
+        model.add(Dense(400))
         model.add(BatchNormalization(momentum=0.8))
         model.add(Activation('relu'))
         model.add(Dense(np.prod(self.img_shape), activation='tanh'))
@@ -77,7 +77,10 @@ class GAN():
         model = Sequential()
 
         model.add(Flatten(input_shape=self.img_shape))
-        model.add(Dense(100))
+        model.add(Dense(400))
+        model.add(BatchNormalization(momentum=0.8))
+        model.add(Activation('relu'))
+        model.add(Dense(200))
         model.add(BatchNormalization(momentum=0.8))
         model.add(Activation('relu'))
         model.add(Dense(100))
@@ -161,4 +164,4 @@ class GAN():
 
 if __name__ == '__main__':
     gan = GAN()
-    gan.train(epochs=3000, batch_size=32, sample_interval=200)
+    gan.train(epochs=30000, batch_size=32, sample_interval=200)
