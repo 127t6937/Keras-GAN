@@ -53,12 +53,12 @@ class GAN():
 
         model = Sequential()
 
-        model.add(Dense(256, input_dim=self.latent_dim))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dense(512))
+        model.add(Dense(100, input_dim=self.latent_dim))
+        model.add(activation = 'relu')
+        model.add(Dense(100))
         model.add(LeakyReLU(alpha=0.2))
 
-        model.add(Dense(1024))
+        model.add(Dense(100))
         model.add(LeakyReLU(alpha=0.2))
 
         model.add(Dense(np.prod(self.img_shape), activation='tanh'))
