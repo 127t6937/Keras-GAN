@@ -54,10 +54,13 @@ class GAN():
         model = Sequential()
 
         model.add(Dense(100, input_dim=self.latent_dim))
+        model.add(BatchNormalization(momentum=0.8))
         model.add(Activation('relu'))
         model.add(Dense(100))
+        model.add(BatchNormalization(momentum=0.8))
         model.add(Activation('relu'))
         model.add(Dense(100))
+        model.add(BatchNormalization(momentum=0.8))
         model.add(Activation('relu'))
         model.add(Dense(np.prod(self.img_shape), activation='tanh'))
         model.add(Reshape(self.img_shape))
@@ -75,8 +78,10 @@ class GAN():
 
         model.add(Flatten(input_shape=self.img_shape))
         model.add(Dense(100))
+        model.add(BatchNormalization(momentum=0.8))
         model.add(Activation('relu'))
         model.add(Dense(100))
+        model.add(BatchNormalization(momentum=0.8))
         model.add(Activation('relu'))
         model.add(Dense(1, activation='sigmoid'))
         model.summary()
@@ -150,10 +155,10 @@ class GAN():
                 axs[i,j].imshow(gen_imgs[cnt, :,:,0], cmap='gray')
                 axs[i,j].axis('off')
                 cnt += 1
-        fig.savefig("images/%d.png" % epoch)
+        fig.savefig("images_BN/%d.png" % epoch)
         plt.close()
 
 
 if __name__ == '__main__':
     gan = GAN()
-    gan.train(epochs=30000, batch_size=32, sample_interval=200)
+    gan.train(epochs=3000, batch_size=32, sample_interval=200)
